@@ -6,6 +6,7 @@ class ChatRequest(BaseModel):
     message: str
 
 class ExpenseData(BaseModel):
+    save_type: int
     category: str
     amount: int
     date: str
