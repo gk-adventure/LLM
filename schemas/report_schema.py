@@ -11,4 +11,5 @@ class Expense(BaseModel):
 class ReportRequest(BaseModel):
     userId: int
     month: str
+    monthBudget: int
     data: List[Expense]
