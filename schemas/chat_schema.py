@@ -10,7 +10,7 @@ class ExpenseData(BaseModel):
     category: str
     amount: int
     date: str
-    memo: str
+    description: str
     
 class ChatResponse(BaseModel):
     type: str

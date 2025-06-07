@@ -5,7 +5,7 @@ class Expense(BaseModel):
     category: str
     amount: int
     date: str
-    memo: str
+    description: str
     
 
 class ReportRequest(BaseModel):

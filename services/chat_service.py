@@ -33,7 +33,7 @@ tools = [{
                     "type": "string",
                     "description": "소비 날짜 (YYYY-MM-DD 형식)"
                 },
-                "memo": {
+                "description": {
                     "type": "string",
                     "description": "소비에 대한 메모"
                 }
@@ -59,7 +59,7 @@ def handle_message(message: str):
              오늘 날짜는 {today}야.
              만약 소비자가 '오늘', '어제', '그제'와 같은 말들을 하면 이를 기준으로 정확한 날짜(YYYY-MM-DD 형식)로 변환해서 바꿔줘.
              소비 내역을 말하면 수입인지 지출인지 판단하여 반환하고, 카테고리와 금액, 날짜, 메모를 파싱해서 JSON 형태로 반환해줘.
-             일반적인 질문이나 조언(피드백) 요청이면 텍스트로 답변해줘."""},
+             소비 내역을 저장하는 입력이 아닌 소비 방식과 같은 질문에는 그에 대한 피드백을 반환해줘. 또한 일반적인 질문이나 조언(피드백) 요청이면 텍스트로 답변해줘."""},
              {"role": "user", "content": message}
         ],
         tools=tools,
@@ -79,7 +79,7 @@ def handle_message(message: str):
                 "category": args["category"], 
                 "amount": args["amount"],
                 "date": args["date"],
-                "memo": args["memo"]
+                "description": args["description"]
             }
         }
     else:
