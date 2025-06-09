@@ -16,12 +16,17 @@ def analyze_consumption(request: ReportRequest):
 
     반환 형식은 아래 예시처럼 반환해줘.
     {{
+    "month": YYYY-MM,                             // 월 (YYYY-MM 형식)
     "totalSpending": number,                       // 총 소비 금액 (숫자)
-    "budgetUsageRate": number,                    // 예산 대비 소비율 (퍼센트 숫자)
-    "topCategories": [string],                    // 소비가 높은 카테고리 목록
-    "spendingByCategory": {{                       // 카테고리별 소비 금액
+    "categoryBreakdown": {{                       // 카테고리별 소비 금액
         "카테고리명": number
     }},
+    "categoryRatio": {{                       // 카테고리별 지출 비율
+        "카테고리명": number
+    }},
+    "monthBudget": number,                     // 월 예산 (숫자)
+    "budgetUsageRate": number,                    // 예산 대비 소비율 (퍼센트 숫자)
+    "weeklySpendingRate": number, // 주간 지출 비율 [리스트 반환]
     "patternAnalysis": string,                    // 소비 패턴 요약 설명
     "feedback": string                            // 사용자 맞춤 피드백
     }}
