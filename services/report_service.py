@@ -14,27 +14,23 @@ def analyze_consumption(request: ReportRequest):
     사용자 {request.userId}의 {request.month} 월 소비 내역이야. 사용자의 해당 월 예산은 {request.monthBudget}원이야.
     아래 데이터를 바탕으로 월간 소비 습관을 요약하고 분석해줘. 그리고 피드백도 함께 제공해줘.
 
-    아래 JSON 형식으로 결과를 만들어줘:
+    반환 형식은 아래 예시처럼 반환해줘.
     {{
-      "userId": {request.userId},
-      "month": "{request.month}",
-      "summary": {{
-        "totalSpent": (총 지출액),
-        "categoryBreakdown": {{
-          "카테고리1": 금액,
-          "카테고리2": 금액,
-          ...
-        }},
-        "monthlyBudget": {request.monthBudget},
-        "notes": "(소비에 대한 전체 요약 설명. 2~3문장)"
-      }},
-      "suggestions": {{
-        "카테고리1": "(해당 카테고리 소비 절약 팁)",
-        "카테고리2": "(해당 카테고리 소비 절약 팁)",
-        "전체": "(종합적인 소비 개선 팁)"
-      }},
-      "riskCategory": ["과소비로 판단되는 카테고리 목록"]
+    "month": YYYY-MM,                             // 월 (YYYY-MM 형식)
+    "totalSpending": number,                       // 총 소비 금액 (숫자)
+    "categoryBreakdown": {{                       // 카테고리별 소비 금액
+        "카테고리명": number
+    }},
+    "categoryRatio": {{                       // 카테고리별 지출 비율
+        "카테고리명": number
+    }},
+    "monthBudget": number,                     // 월 예산 (숫자)
+    "budgetUsageRate": number,                    // 예산 대비 소비율 (퍼센트 숫자)
+    "weeklySpendingRate": number,               // 주간 지출 비율을 주 별로 반환 (전체 소비 중 주별 소비 비율) (리스트 반환)
+    "patternAnalysis": string,                    // 소비 패턴 요약 설명
+    "feedback": string                            // 사용자 맞춤 피드백
     }}
+    반드시 JSON 형식을 지켜서 반환해줘.
 
     아래는 사용자의 소비 데이터야:
     """
@@ -53,3 +49,4 @@ def analyze_consumption(request: ReportRequest):
 
     # json.loads: string 타입의 json 형태를 python dictionary 타입으로 가져옴 
     return json.loads(response.choices[0].message.content)
+    # return response.choices[0].message.content
