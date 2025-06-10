@@ -26,7 +26,7 @@ def analyze_consumption(request: ReportRequest):
     }},
     "monthBudget": number,                     // 월 예산 (숫자)
     "budgetUsageRate": number,                    // 예산 대비 소비율 (퍼센트 숫자)
-    "weeklySpendingRate": number, // 주간 지출 비율 [리스트 반환]
+    "weeklySpendingRate": number,               // 주간 지출 비율을 주 별로 반환 (전체 소비 중 주별 소비 비율) (리스트 반환)
     "patternAnalysis": string,                    // 소비 패턴 요약 설명
     "feedback": string                            // 사용자 맞춤 피드백
     }}
